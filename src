@@ -14,7 +14,10 @@ void print(char arr[6][7]);
 void inputp1(int* p1, char arr[6][7]);
 void inputp2(int* p2, char arr[6][7]);
 void dropCoin(char arr[6][7], int column, bool playerflag);
-bool checkFlag(char arr[6][7]);
+bool checkHorizontal(char arr[6][7], char letter);
+bool checkVertical(char arr[6][7], char letter);
+bool checkDiagonal();
+bool checkWin(char arr[6][7], char letter);
 
 int main() {
 	char board[6][7];
@@ -33,6 +36,11 @@ int main() {
 		checkLogic = false;
 		inputp1(&columnp1, board);
 		dropCoin(board, columnp1, player);
+		if(checkWin(board, 'R')){
+			cout << "Player 1 Wins"<<endl;
+			break;
+		}
+
 
 		print(board);
 		cout<<endl;
@@ -41,11 +49,17 @@ int main() {
 		inputp2(&columnp2, board);
 		dropCoin(board, columnp2, player);
 
+		if(checkWin(board, 'B')){
+			cout << "Player 2 Wins"<<endl;
+			break;
+		}
+
+
+
 		print(board);
 		cout<<endl;
 
 	}while(!checkLogic);
-
 
 
 	return 0;
@@ -91,6 +105,7 @@ void inputp1(int* p1, char arr[6][7]){
 	while(1){
 		cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
 		cin>>column;
+		column = column - 1;
 
 		if (column>6 || column < 0){
 			cout<<"Error, please insert into a column between 0 and 6"<<endl;
@@ -111,8 +126,9 @@ void inputp1(int* p1, char arr[6][7]){
 void inputp2(int* p2, char arr[6][7]){
 	int column;
 	while(1){
-			cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
+			cout<<"Player 2(B): Insert Column Number to Insert Coin"<<endl;
 			cin>>column;
+			column = column - 1;
 
 			if (column>6 || column<0){
 				cout<<"Error, please insert into a column between 0 and 6"<<endl;
@@ -131,8 +147,52 @@ void inputp2(int* p2, char arr[6][7]){
 	}
 }
 
-bool checkFlag(char arr[6][7]){
+bool checkHorizontal(char arr[6][7], char letter){
+	//There are only 4 possibilities
+	for(int i = 0; i < 6; i++){
+		if((arr[i][0]==letter) && (arr[i][1] ==letter) && (arr[i][2] == letter)&& (arr[i][3]==letter)){
+			return  true;
+		}
+		else if((arr[i][1]==letter) && (arr[i][2] ==letter) && (arr[i][3] == letter)&& (arr[i][4]==letter)){
+			return true;
+		}
+		else if((arr[i][2]==letter) && (arr[i][3] ==letter) && (arr[i][4] == letter)&& (arr[i][4]==letter)){
+			return true;
+		}
+		else if((arr[i][3]==letter) && (arr[i][4] ==letter) && (arr[i][5] == letter)&& (arr[i][6]==letter)){
+			return true;
 
+
+		}
+		else{
+			return false;
+		}
+	}
+}
+bool checkVertical(char arr[6][7], char letter){
+	for(int i = 0; i < 5; i++){
+		if((arr[0][i] ==letter) &&(arr[1][i]==letter) && (arr[2][i] ==letter) && (arr[3][i] == letter)){
+			return true;
+		}
+		else if((arr[1][i] ==letter) &&(arr[2][i]==letter) && (arr[3][i] ==letter) && (arr[4][i] == letter)){
+			return true;
+		}
+		else if((arr[2][i] ==letter) &&(arr[3][i]==letter) && (arr[4][i] ==letter) && (arr[5][i] == letter)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}
+bool checkWin(char arr[6][7], char letter){
+	bool isWin;
+	if (checkHorizontal(arr, letter) || checkVertical(arr, letter)){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 
