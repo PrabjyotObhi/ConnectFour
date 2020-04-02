@@ -69,7 +69,7 @@ void print(char arr[6][7]){
 }
 void dropCoin(char arr[6][7], int column, bool playerflag){
 	if(playerflag){
-		for(int i = 6; i > 0; i--){
+		for(int i = 5; i >= 0; i--){
 			if((arr[i][column]=='X')){
 				arr[i][column] = 'R';
 				break;
@@ -77,7 +77,7 @@ void dropCoin(char arr[6][7], int column, bool playerflag){
 		}
 	}
 	else{
-		for(int i = 6; i > 0; i--){
+		for(int i = 5; i >= 0; i--){
 			if((arr[i][column]=='X')){
 				arr[i][column] = 'B';
 				break;
