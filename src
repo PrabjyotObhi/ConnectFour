@@ -14,6 +14,7 @@ void print(char arr[6][7]);
 void inputp1(int* p1, char arr[6][7]);
 void inputp2(int* p2, char arr[6][7]);
 void dropCoin(char arr[6][7], int column, bool playerflag);
+bool checkFlag(char arr[6][7]);
 
 int main() {
 	char board[6][7];
@@ -42,7 +43,6 @@ int main() {
 
 		print(board);
 		cout<<endl;
-
 
 	}while(!checkLogic);
 
@@ -92,7 +92,7 @@ void inputp1(int* p1, char arr[6][7]){
 		cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
 		cin>>column;
 
-		if (column>6){
+		if (column>6 || column < 0){
 			cout<<"Error, please insert into a column between 0 and 6"<<endl;
 			continue;
 		}
@@ -114,7 +114,7 @@ void inputp2(int* p2, char arr[6][7]){
 			cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
 			cin>>column;
 
-			if (column>6){
+			if (column>6 || column<0){
 				cout<<"Error, please insert into a column between 0 and 6"<<endl;
 				continue;
 			}
@@ -131,5 +131,8 @@ void inputp2(int* p2, char arr[6][7]){
 	}
 }
 
+bool checkFlag(char arr[6][7]){
+
+}
 
 
