@@ -19,20 +19,34 @@ int main() {
 	char board[6][7];
 	int columnp1;
 	int columnp2;
-	bool checkLogic = false;
+	bool checkLogic;
+	bool player;
+
+	//Fill and print board
 	fillBoard(board);
-	bool player = true;
+	print(board);
+	cout<<endl;
 
 	do{
-		print(board);
+		player = true;
+		checkLogic = false;
 		inputp1(&columnp1);
 		dropCoin(board, columnp1, player);
+
 		print(board);
+		cout<<endl;
+
 		player = !player;
 		inputp2(&columnp2);
 		dropCoin(board, columnp2, player);
+
 		print(board);
+		cout<<endl;
+
+
 	}while(!checkLogic);
+
+
 
 
 	return 0;
@@ -56,7 +70,7 @@ void print(char arr[6][7]){
 void dropCoin(char arr[6][7], int column, bool playerflag){
 	if(playerflag){
 		for(int i = 6; i > 0; i--){
-			if(arr[i][column]=='X'){
+			if((arr[i][column]=='X')){
 				arr[i][column] = 'R';
 				break;
 			}
@@ -64,7 +78,7 @@ void dropCoin(char arr[6][7], int column, bool playerflag){
 	}
 	else{
 		for(int i = 6; i > 0; i--){
-			if(arr[i][column]=='X'){
+			if((arr[i][column]=='X')){
 				arr[i][column] = 'B';
 				break;
 			}
@@ -73,11 +87,11 @@ void dropCoin(char arr[6][7], int column, bool playerflag){
 }
 
 void inputp1(int* p1){
-	cout<<"Insert Column Number to Insert Coin"<<endl;
+	cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
 	cin>>*p1;
 }
 void inputp2(int* p2){
-	cout<<"Insert Column Number to Insert Coin"<<endl;
+	cout<<"Player 2(B): Insert Column Number to Insert Coin"<<endl;
 	cin>>*p2;
 }
 
