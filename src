@@ -1,0 +1,67 @@
+//============================================================================
+// Name        : ConnectFour.cpp
+// Author      : Prabjyot Obhi
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+using namespace std;
+
+void fillBoard(char arr[6][7]);
+void print(char arr[6][7]);
+void inputp1(int* p1);
+void inputp2(int* p2);
+void dropCoin(char arr[6][7], int column, bool playerflag);
+
+int main() {
+	char board[6][7];
+	int columnp1;
+	int columnp2;
+	bool player = true;
+	fillBoard(board);
+
+
+	print(board);
+	inputp1(&columnp1);
+
+
+	print(board);
+
+	return 0;
+}
+
+void fillBoard(char arr[6][7]){
+	for(int i=0; i<7; i++){
+		for(int j=0; j<7;j++){
+			arr[i][j] = 'X';
+		}
+	}
+}
+void print(char arr[6][7]){
+	for(int i=0; i<6; i++){
+			for(int j=0; j<7;j++){
+				cout<<arr[i][j]<<"  ";
+			}
+			cout<<endl;
+		}
+}
+void dropCoin(char arr[6][7], int column, bool playerflag){
+	if(playerflag){
+		for(int i = 0; i < 6; i++)
+	}
+	arr[5][column]='R';
+}
+
+void inputp1(int* p1){
+	cout<<"Insert Column Number to Insert Coin"<<endl;
+	cin>>*p1;
+}
+void inputp2(int* p2){
+	cout<<"Insert Column Number to Insert Coin"<<endl;
+	cin>>*p2;
+}
+
+
+
