@@ -11,8 +11,8 @@ using namespace std;
 
 void fillBoard(char arr[6][7]);
 void print(char arr[6][7]);
-void inputp1(int* p1);
-void inputp2(int* p2);
+void inputp1(int* p1, char arr[6][7]);
+void inputp2(int* p2, char arr[6][7]);
 void dropCoin(char arr[6][7], int column, bool playerflag);
 
 int main() {
@@ -20,7 +20,7 @@ int main() {
 	int columnp1;
 	int columnp2;
 	bool checkLogic;
-	bool player;
+	bool player = true;
 
 	//Fill and print board
 	fillBoard(board);
@@ -30,14 +30,14 @@ int main() {
 	do{
 		player = true;
 		checkLogic = false;
-		inputp1(&columnp1);
+		inputp1(&columnp1, board);
 		dropCoin(board, columnp1, player);
 
 		print(board);
 		cout<<endl;
 
 		player = !player;
-		inputp2(&columnp2);
+		inputp2(&columnp2, board);
 		dropCoin(board, columnp2, player);
 
 		print(board);
@@ -45,7 +45,6 @@ int main() {
 
 
 	}while(!checkLogic);
-
 
 
 
@@ -86,13 +85,50 @@ void dropCoin(char arr[6][7], int column, bool playerflag){
 	}
 }
 
-void inputp1(int* p1){
-	cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
-	cin>>*p1;
+void inputp1(int* p1, char arr[6][7]){
+	int column;
+
+	while(1){
+		cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
+		cin>>column;
+
+		if (column>6){
+			cout<<"Error, please insert into a column between 0 and 6"<<endl;
+			continue;
+		}
+
+		if (arr[0][column] == 'X'){
+			*p1= column;
+			break;
+
+		}
+		else{
+			cout<<"Error, please insert into a different column"<<endl;
+			continue;
+		}
+	}
 }
-void inputp2(int* p2){
-	cout<<"Player 2(B): Insert Column Number to Insert Coin"<<endl;
-	cin>>*p2;
+void inputp2(int* p2, char arr[6][7]){
+	int column;
+	while(1){
+			cout<<"Player 1(R): Insert Column Number to Insert Coin"<<endl;
+			cin>>column;
+
+			if (column>6){
+				cout<<"Error, please insert into a column between 0 and 6"<<endl;
+				continue;
+			}
+
+			if (arr[0][column] == 'X'){
+				*p2= column;
+				break;
+
+			}
+			else{
+				cout<<"Error, please insert into a different column"<<endl;
+				continue;
+			}
+	}
 }
 
 
